@@ -12,12 +12,18 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppActivityRouteImport } from './routes/app.activity'
 import { Route as AppAiAssistantRouteImport } from './routes/app.ai-assistant'
 import { Route as AppAiIntelligenceRouteImport } from './routes/app.ai-intelligence'
 import { Route as AppAuditsRouteImport } from './routes/app.audits'
 import { Route as AppCorrectiveActionsRouteImport } from './routes/app.corrective-actions'
 import { Route as AppInspectionsRouteImport } from './routes/app.inspections'
 import { Route as AppInvestigationsRouteImport } from './routes/app.investigations'
+import { Route as AppMarketplaceRouteImport } from './routes/app.marketplace'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppUsersRouteImport } from './routes/app.users'
 import { Route as AuthChangePasswordRouteImport } from './routes/auth.change-password'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
@@ -42,6 +48,11 @@ const AppRoute = AppRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppActivityRoute = AppActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
@@ -72,6 +83,31 @@ const AppInspectionsRoute = AppInspectionsRouteImport.update({
 const AppInvestigationsRoute = AppInvestigationsRouteImport.update({
   id: '/investigations',
   path: '/investigations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMarketplaceRoute = AppMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppUsersRoute = AppUsersRouteImport.update({
@@ -128,12 +164,18 @@ const AppIncidentsNewRoute = AppIncidentsNewRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -148,12 +190,18 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -170,12 +218,18 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
@@ -193,12 +247,18 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
@@ -213,12 +273,18 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
@@ -234,12 +300,18 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
     | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
@@ -287,6 +359,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/activity': {
+      id: '/app/activity'
+      path: '/activity'
+      fullPath: '/app/activity'
+      preLoaderRoute: typeof AppActivityRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/ai-assistant': {
       id: '/app/ai-assistant'
       path: '/ai-assistant'
@@ -327,6 +406,41 @@ declare module '@tanstack/react-router' {
       path: '/investigations'
       fullPath: '/app/investigations'
       preLoaderRoute: typeof AppInvestigationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/marketplace': {
+      id: '/app/marketplace'
+      path: '/marketplace'
+      fullPath: '/app/marketplace'
+      preLoaderRoute: typeof AppMarketplaceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/users': {
@@ -403,12 +517,18 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppActivityRoute: typeof AppActivityRoute
   AppAiAssistantRoute: typeof AppAiAssistantRoute
   AppAiIntelligenceRoute: typeof AppAiIntelligenceRoute
   AppAuditsRoute: typeof AppAuditsRoute
   AppCorrectiveActionsRoute: typeof AppCorrectiveActionsRoute
   AppInspectionsRoute: typeof AppInspectionsRoute
   AppInvestigationsRoute: typeof AppInvestigationsRoute
+  AppMarketplaceRoute: typeof AppMarketplaceRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppUsersRoute: typeof AppUsersRoute
   AppIndexRoute: typeof AppIndexRoute
   AppIncidentsIdRoute: typeof AppIncidentsIdRoute
@@ -417,12 +537,18 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppActivityRoute: AppActivityRoute,
   AppAiAssistantRoute: AppAiAssistantRoute,
   AppAiIntelligenceRoute: AppAiIntelligenceRoute,
   AppAuditsRoute: AppAuditsRoute,
   AppCorrectiveActionsRoute: AppCorrectiveActionsRoute,
   AppInspectionsRoute: AppInspectionsRoute,
   AppInvestigationsRoute: AppInvestigationsRoute,
+  AppMarketplaceRoute: AppMarketplaceRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppUsersRoute: AppUsersRoute,
   AppIndexRoute: AppIndexRoute,
   AppIncidentsIdRoute: AppIncidentsIdRoute,
