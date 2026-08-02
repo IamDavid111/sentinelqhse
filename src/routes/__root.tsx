@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "SentinelQHSE™ — AI-Powered Operational Safety Intelligence" },
+      { name: "description", content: "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "SentinelQHSE™ — AI-Powered Operational Safety Intelligence" },
+      { property: "og:description", content: "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "SentinelQHSE™ — AI-Powered Operational Safety Intelligence" },
+      { name: "twitter:description", content: "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/1151744f-1584-4e21-803f-b17dc195b7c0" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/1151744f-1584-4e21-803f-b17dc195b7c0" },
     ],
     links: [
       {
