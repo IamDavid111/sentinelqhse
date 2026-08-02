@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppCorrectiveActionsRouteImport } from './routes/app.corrective-actions'
+import { Route as AppInvestigationsRouteImport } from './routes/app.investigations'
 import { Route as AuthChangePasswordRouteImport } from './routes/auth.change-password'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
@@ -19,6 +21,7 @@ import { Route as AuthMfaRouteImport } from './routes/auth.mfa'
 import { Route as AuthRegisterRouteImport } from './routes/auth.register'
 import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
 import { Route as AppIncidentsIndexRouteImport } from './routes/app.incidents.index'
+import { Route as AppIncidentsIdRouteImport } from './routes/app.incidents.$id'
 import { Route as AppIncidentsNewRouteImport } from './routes/app.incidents.new'
 
 const IndexRoute = IndexRouteImport.update({
@@ -34,6 +37,16 @@ const AppRoute = AppRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCorrectiveActionsRoute = AppCorrectiveActionsRouteImport.update({
+  id: '/corrective-actions',
+  path: '/corrective-actions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInvestigationsRoute = AppInvestigationsRouteImport.update({
+  id: '/investigations',
+  path: '/investigations',
   getParentRoute: () => AppRoute,
 } as any)
 const AuthChangePasswordRoute = AuthChangePasswordRouteImport.update({
@@ -71,6 +84,11 @@ const AppIncidentsIndexRoute = AppIncidentsIndexRouteImport.update({
   path: '/incidents/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppIncidentsIdRoute = AppIncidentsIdRouteImport.update({
+  id: '/incidents/$id',
+  path: '/incidents/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppIncidentsNewRoute = AppIncidentsNewRouteImport.update({
   id: '/incidents/new',
   path: '/incidents/new',
@@ -80,6 +98,8 @@ const AppIncidentsNewRoute = AppIncidentsNewRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -87,11 +107,14 @@ export interface FileRoutesByFullPath {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/app/': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
   '/app/incidents/new': typeof AppIncidentsNewRoute
   '/app/incidents/': typeof AppIncidentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -99,6 +122,7 @@ export interface FileRoutesByTo {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/app': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
   '/app/incidents/new': typeof AppIncidentsNewRoute
   '/app/incidents': typeof AppIncidentsIndexRoute
 }
@@ -106,6 +130,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -113,6 +139,7 @@ export interface FileRoutesById {
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/app/': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
   '/app/incidents/new': typeof AppIncidentsNewRoute
   '/app/incidents/': typeof AppIncidentsIndexRoute
 }
@@ -121,6 +148,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/corrective-actions'
+    | '/app/investigations'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -128,11 +157,14 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/app/'
+    | '/app/incidents/$id'
     | '/app/incidents/new'
     | '/app/incidents/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/corrective-actions'
+    | '/app/investigations'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -140,12 +172,15 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/app'
+    | '/app/incidents/$id'
     | '/app/incidents/new'
     | '/app/incidents'
   id:
     | '__root__'
     | '/'
     | '/app'
+    | '/app/corrective-actions'
+    | '/app/investigations'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -153,6 +188,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/auth/reset-password'
     | '/app/'
+    | '/app/incidents/$id'
     | '/app/incidents/new'
     | '/app/incidents/'
   fileRoutesById: FileRoutesById
@@ -189,6 +225,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/corrective-actions': {
+      id: '/app/corrective-actions'
+      path: '/corrective-actions'
+      fullPath: '/app/corrective-actions'
+      preLoaderRoute: typeof AppCorrectiveActionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/investigations': {
+      id: '/app/investigations'
+      path: '/investigations'
+      fullPath: '/app/investigations'
+      preLoaderRoute: typeof AppInvestigationsRouteImport
       parentRoute: typeof AppRoute
     }
     '/auth/change-password': {
@@ -240,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIncidentsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/incidents/$id': {
+      id: '/app/incidents/$id'
+      path: '/incidents/$id'
+      fullPath: '/app/incidents/$id'
+      preLoaderRoute: typeof AppIncidentsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/incidents/new': {
       id: '/app/incidents/new'
       path: '/incidents/new'
@@ -251,13 +308,19 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppCorrectiveActionsRoute: typeof AppCorrectiveActionsRoute
+  AppInvestigationsRoute: typeof AppInvestigationsRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppIncidentsIdRoute: typeof AppIncidentsIdRoute
   AppIncidentsNewRoute: typeof AppIncidentsNewRoute
   AppIncidentsIndexRoute: typeof AppIncidentsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCorrectiveActionsRoute: AppCorrectiveActionsRoute,
+  AppInvestigationsRoute: AppInvestigationsRoute,
   AppIndexRoute: AppIndexRoute,
+  AppIncidentsIdRoute: AppIncidentsIdRoute,
   AppIncidentsNewRoute: AppIncidentsNewRoute,
   AppIncidentsIndexRoute: AppIncidentsIndexRoute,
 }
