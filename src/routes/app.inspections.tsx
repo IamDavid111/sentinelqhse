@@ -240,19 +240,20 @@ function InspectionsPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  ["Unsafe Condition", "Oil film on grating near pump skid 3", "High"],
-                  ["Positive Observation", "Crew stopped the job to re-verify gas test", "Low"],
-                  ["Unsafe Act", "Bypassing barricade to shorten route", "Medium"],
-                  ["Safe Act", "Correct manual handling technique observed", "Low"],
-                ].map(([cat, text, risk]) => (
-                  <div key={text} className="flex items-start justify-between gap-3 rounded-lg border p-3">
+                  { cat: "Unsafe Condition", text: "Oil film on grating near pump skid 3", risk: "High" },
+                  { cat: "Positive Observation", text: "Crew stopped the job to re-verify gas test", risk: "Low" },
+                  { cat: "Unsafe Act", text: "Bypassing barricade to shorten route", risk: "Medium" },
+                  { cat: "Safe Act", text: "Correct manual handling technique observed", risk: "Low" },
+                ].map((o) => (
+                  <div key={o.text} className="flex items-start justify-between gap-3 rounded-lg border p-3">
                     <div>
-                      <p className="text-sm font-medium">{text}</p>
-                      <p className="text-xs text-muted-foreground">{cat}</p>
+                      <p className="text-sm font-medium">{o.text}</p>
+                      <p className="text-xs text-muted-foreground">{o.cat}</p>
                     </div>
-                    <StatusPill value={risk} />
+                    <StatusPill value={o.risk} />
                   </div>
                 ))}
+
               </CardContent>
             </Card>
           </div>
