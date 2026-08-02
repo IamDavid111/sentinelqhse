@@ -10,33 +10,330 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppActivityRouteImport } from './routes/app.activity'
+import { Route as AppAiAssistantRouteImport } from './routes/app.ai-assistant'
+import { Route as AppAiIntelligenceRouteImport } from './routes/app.ai-intelligence'
+import { Route as AppAuditsRouteImport } from './routes/app.audits'
+import { Route as AppCorrectiveActionsRouteImport } from './routes/app.corrective-actions'
+import { Route as AppInspectionsRouteImport } from './routes/app.inspections'
+import { Route as AppInvestigationsRouteImport } from './routes/app.investigations'
+import { Route as AppMarketplaceRouteImport } from './routes/app.marketplace'
+import { Route as AppNotificationsRouteImport } from './routes/app.notifications'
+import { Route as AppProfileRouteImport } from './routes/app.profile'
+import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppUsersRouteImport } from './routes/app.users'
+import { Route as AuthChangePasswordRouteImport } from './routes/auth.change-password'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthMfaRouteImport } from './routes/auth.mfa'
+import { Route as AuthRegisterRouteImport } from './routes/auth.register'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth.reset-password'
+import { Route as AppIncidentsIndexRouteImport } from './routes/app.incidents.index'
+import { Route as AppIncidentsIdRouteImport } from './routes/app.incidents.$id'
+import { Route as AppIncidentsNewRouteImport } from './routes/app.incidents.new'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppActivityRoute = AppActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAiIntelligenceRoute = AppAiIntelligenceRouteImport.update({
+  id: '/ai-intelligence',
+  path: '/ai-intelligence',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAuditsRoute = AppAuditsRouteImport.update({
+  id: '/audits',
+  path: '/audits',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCorrectiveActionsRoute = AppCorrectiveActionsRouteImport.update({
+  id: '/corrective-actions',
+  path: '/corrective-actions',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInspectionsRoute = AppInspectionsRouteImport.update({
+  id: '/inspections',
+  path: '/inspections',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInvestigationsRoute = AppInvestigationsRouteImport.update({
+  id: '/investigations',
+  path: '/investigations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMarketplaceRoute = AppMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppNotificationsRoute = AppNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUsersRoute = AppUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AppRoute,
+} as any)
+const AuthChangePasswordRoute = AuthChangePasswordRouteImport.update({
+  id: '/auth/change-password',
+  path: '/auth/change-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
+  id: '/auth/forgot-password',
+  path: '/auth/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthMfaRoute = AuthMfaRouteImport.update({
+  id: '/auth/mfa',
+  path: '/auth/mfa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/auth/register',
+  path: '/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
+  id: '/auth/reset-password',
+  path: '/auth/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIncidentsIndexRoute = AppIncidentsIndexRouteImport.update({
+  id: '/incidents/',
+  path: '/incidents/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIncidentsIdRoute = AppIncidentsIdRouteImport.update({
+  id: '/incidents/$id',
+  path: '/incidents/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppIncidentsNewRoute = AppIncidentsNewRouteImport.update({
+  id: '/incidents/new',
+  path: '/incidents/new',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/activity': typeof AppActivityRoute
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/audits': typeof AppAuditsRoute
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/inspections': typeof AppInspectionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/users': typeof AppUsersRoute
+  '/auth/change-password': typeof AuthChangePasswordRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/mfa': typeof AuthMfaRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/app/': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
+  '/app/incidents/new': typeof AppIncidentsNewRoute
+  '/app/incidents/': typeof AppIncidentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/activity': typeof AppActivityRoute
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/audits': typeof AppAuditsRoute
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/inspections': typeof AppInspectionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/users': typeof AppUsersRoute
+  '/auth/change-password': typeof AuthChangePasswordRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/mfa': typeof AuthMfaRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/app': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
+  '/app/incidents/new': typeof AppIncidentsNewRoute
+  '/app/incidents': typeof AppIncidentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/app/activity': typeof AppActivityRoute
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/audits': typeof AppAuditsRoute
+  '/app/corrective-actions': typeof AppCorrectiveActionsRoute
+  '/app/inspections': typeof AppInspectionsRoute
+  '/app/investigations': typeof AppInvestigationsRoute
+  '/app/marketplace': typeof AppMarketplaceRoute
+  '/app/notifications': typeof AppNotificationsRoute
+  '/app/profile': typeof AppProfileRoute
+  '/app/reports': typeof AppReportsRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/users': typeof AppUsersRoute
+  '/auth/change-password': typeof AuthChangePasswordRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/mfa': typeof AuthMfaRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/app/': typeof AppIndexRoute
+  '/app/incidents/$id': typeof AppIncidentsIdRoute
+  '/app/incidents/new': typeof AppIncidentsNewRoute
+  '/app/incidents/': typeof AppIncidentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/app/activity'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
+    | '/app/audits'
+    | '/app/corrective-actions'
+    | '/app/inspections'
+    | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/users'
+    | '/auth/change-password'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/mfa'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/app/'
+    | '/app/incidents/$id'
+    | '/app/incidents/new'
+    | '/app/incidents/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/app/activity'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
+    | '/app/audits'
+    | '/app/corrective-actions'
+    | '/app/inspections'
+    | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/users'
+    | '/auth/change-password'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/mfa'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/app'
+    | '/app/incidents/$id'
+    | '/app/incidents/new'
+    | '/app/incidents'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/app/activity'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
+    | '/app/audits'
+    | '/app/corrective-actions'
+    | '/app/inspections'
+    | '/app/investigations'
+    | '/app/marketplace'
+    | '/app/notifications'
+    | '/app/profile'
+    | '/app/reports'
+    | '/app/settings'
+    | '/app/users'
+    | '/auth/change-password'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/mfa'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/app/'
+    | '/app/incidents/$id'
+    | '/app/incidents/new'
+    | '/app/incidents/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthChangePasswordRoute: typeof AuthChangePasswordRoute
+  AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthMfaRoute: typeof AuthMfaRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResetPasswordRoute: typeof AuthResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +345,228 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/activity': {
+      id: '/app/activity'
+      path: '/activity'
+      fullPath: '/app/activity'
+      preLoaderRoute: typeof AppActivityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ai-assistant': {
+      id: '/app/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/app/ai-assistant'
+      preLoaderRoute: typeof AppAiAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ai-intelligence': {
+      id: '/app/ai-intelligence'
+      path: '/ai-intelligence'
+      fullPath: '/app/ai-intelligence'
+      preLoaderRoute: typeof AppAiIntelligenceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/audits': {
+      id: '/app/audits'
+      path: '/audits'
+      fullPath: '/app/audits'
+      preLoaderRoute: typeof AppAuditsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/corrective-actions': {
+      id: '/app/corrective-actions'
+      path: '/corrective-actions'
+      fullPath: '/app/corrective-actions'
+      preLoaderRoute: typeof AppCorrectiveActionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/inspections': {
+      id: '/app/inspections'
+      path: '/inspections'
+      fullPath: '/app/inspections'
+      preLoaderRoute: typeof AppInspectionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/investigations': {
+      id: '/app/investigations'
+      path: '/investigations'
+      fullPath: '/app/investigations'
+      preLoaderRoute: typeof AppInvestigationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/marketplace': {
+      id: '/app/marketplace'
+      path: '/marketplace'
+      fullPath: '/app/marketplace'
+      preLoaderRoute: typeof AppMarketplaceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/notifications': {
+      id: '/app/notifications'
+      path: '/notifications'
+      fullPath: '/app/notifications'
+      preLoaderRoute: typeof AppNotificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/profile': {
+      id: '/app/profile'
+      path: '/profile'
+      fullPath: '/app/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/reports': {
+      id: '/app/reports'
+      path: '/reports'
+      fullPath: '/app/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/users': {
+      id: '/app/users'
+      path: '/users'
+      fullPath: '/app/users'
+      preLoaderRoute: typeof AppUsersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/auth/change-password': {
+      id: '/auth/change-password'
+      path: '/auth/change-password'
+      fullPath: '/auth/change-password'
+      preLoaderRoute: typeof AuthChangePasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/auth/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/mfa': {
+      id: '/auth/mfa'
+      path: '/auth/mfa'
+      fullPath: '/auth/mfa'
+      preLoaderRoute: typeof AuthMfaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/auth/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/incidents/': {
+      id: '/app/incidents/'
+      path: '/incidents'
+      fullPath: '/app/incidents/'
+      preLoaderRoute: typeof AppIncidentsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/incidents/$id': {
+      id: '/app/incidents/$id'
+      path: '/incidents/$id'
+      fullPath: '/app/incidents/$id'
+      preLoaderRoute: typeof AppIncidentsIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/incidents/new': {
+      id: '/app/incidents/new'
+      path: '/incidents/new'
+      fullPath: '/app/incidents/new'
+      preLoaderRoute: typeof AppIncidentsNewRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppActivityRoute: typeof AppActivityRoute
+  AppAiAssistantRoute: typeof AppAiAssistantRoute
+  AppAiIntelligenceRoute: typeof AppAiIntelligenceRoute
+  AppAuditsRoute: typeof AppAuditsRoute
+  AppCorrectiveActionsRoute: typeof AppCorrectiveActionsRoute
+  AppInspectionsRoute: typeof AppInspectionsRoute
+  AppInvestigationsRoute: typeof AppInvestigationsRoute
+  AppMarketplaceRoute: typeof AppMarketplaceRoute
+  AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppUsersRoute: typeof AppUsersRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppIncidentsIdRoute: typeof AppIncidentsIdRoute
+  AppIncidentsNewRoute: typeof AppIncidentsNewRoute
+  AppIncidentsIndexRoute: typeof AppIncidentsIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppActivityRoute: AppActivityRoute,
+  AppAiAssistantRoute: AppAiAssistantRoute,
+  AppAiIntelligenceRoute: AppAiIntelligenceRoute,
+  AppAuditsRoute: AppAuditsRoute,
+  AppCorrectiveActionsRoute: AppCorrectiveActionsRoute,
+  AppInspectionsRoute: AppInspectionsRoute,
+  AppInvestigationsRoute: AppInvestigationsRoute,
+  AppMarketplaceRoute: AppMarketplaceRoute,
+  AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppUsersRoute: AppUsersRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppIncidentsIdRoute: AppIncidentsIdRoute,
+  AppIncidentsNewRoute: AppIncidentsNewRoute,
+  AppIncidentsIndexRoute: AppIncidentsIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthChangePasswordRoute: AuthChangePasswordRoute,
+  AuthForgotPasswordRoute: AuthForgotPasswordRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthMfaRoute: AuthMfaRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
+  AuthResetPasswordRoute: AuthResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
