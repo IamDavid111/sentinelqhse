@@ -12,10 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAiAssistantRouteImport } from './routes/app.ai-assistant'
+import { Route as AppAiIntelligenceRouteImport } from './routes/app.ai-intelligence'
 import { Route as AppAuditsRouteImport } from './routes/app.audits'
 import { Route as AppCorrectiveActionsRouteImport } from './routes/app.corrective-actions'
 import { Route as AppInspectionsRouteImport } from './routes/app.inspections'
 import { Route as AppInvestigationsRouteImport } from './routes/app.investigations'
+import { Route as AppUsersRouteImport } from './routes/app.users'
 import { Route as AuthChangePasswordRouteImport } from './routes/auth.change-password'
 import { Route as AuthForgotPasswordRouteImport } from './routes/auth.forgot-password'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
@@ -41,6 +44,16 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
+  id: '/ai-assistant',
+  path: '/ai-assistant',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAiIntelligenceRoute = AppAiIntelligenceRouteImport.update({
+  id: '/ai-intelligence',
+  path: '/ai-intelligence',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppAuditsRoute = AppAuditsRouteImport.update({
   id: '/audits',
   path: '/audits',
@@ -59,6 +72,11 @@ const AppInspectionsRoute = AppInspectionsRouteImport.update({
 const AppInvestigationsRoute = AppInvestigationsRouteImport.update({
   id: '/investigations',
   path: '/investigations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppUsersRoute = AppUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
   getParentRoute: () => AppRoute,
 } as any)
 const AuthChangePasswordRoute = AuthChangePasswordRouteImport.update({
@@ -110,10 +128,13 @@ const AppIncidentsNewRoute = AppIncidentsNewRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -127,10 +148,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -146,10 +170,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/ai-assistant': typeof AppAiAssistantRoute
+  '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
   '/app/investigations': typeof AppInvestigationsRoute
+  '/app/users': typeof AppUsersRoute
   '/auth/change-password': typeof AuthChangePasswordRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
@@ -166,10 +193,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -183,10 +213,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -201,10 +234,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/ai-assistant'
+    | '/app/ai-intelligence'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
     | '/app/investigations'
+    | '/app/users'
     | '/auth/change-password'
     | '/auth/forgot-password'
     | '/auth/login'
@@ -251,6 +287,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/ai-assistant': {
+      id: '/app/ai-assistant'
+      path: '/ai-assistant'
+      fullPath: '/app/ai-assistant'
+      preLoaderRoute: typeof AppAiAssistantRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ai-intelligence': {
+      id: '/app/ai-intelligence'
+      path: '/ai-intelligence'
+      fullPath: '/app/ai-intelligence'
+      preLoaderRoute: typeof AppAiIntelligenceRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/audits': {
       id: '/app/audits'
       path: '/audits'
@@ -277,6 +327,13 @@ declare module '@tanstack/react-router' {
       path: '/investigations'
       fullPath: '/app/investigations'
       preLoaderRoute: typeof AppInvestigationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/users': {
+      id: '/app/users'
+      path: '/users'
+      fullPath: '/app/users'
+      preLoaderRoute: typeof AppUsersRouteImport
       parentRoute: typeof AppRoute
     }
     '/auth/change-password': {
@@ -346,10 +403,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAiAssistantRoute: typeof AppAiAssistantRoute
+  AppAiIntelligenceRoute: typeof AppAiIntelligenceRoute
   AppAuditsRoute: typeof AppAuditsRoute
   AppCorrectiveActionsRoute: typeof AppCorrectiveActionsRoute
   AppInspectionsRoute: typeof AppInspectionsRoute
   AppInvestigationsRoute: typeof AppInvestigationsRoute
+  AppUsersRoute: typeof AppUsersRoute
   AppIndexRoute: typeof AppIndexRoute
   AppIncidentsIdRoute: typeof AppIncidentsIdRoute
   AppIncidentsNewRoute: typeof AppIncidentsNewRoute
@@ -357,10 +417,13 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAiAssistantRoute: AppAiAssistantRoute,
+  AppAiIntelligenceRoute: AppAiIntelligenceRoute,
   AppAuditsRoute: AppAuditsRoute,
   AppCorrectiveActionsRoute: AppCorrectiveActionsRoute,
   AppInspectionsRoute: AppInspectionsRoute,
   AppInvestigationsRoute: AppInvestigationsRoute,
+  AppUsersRoute: AppUsersRoute,
   AppIndexRoute: AppIndexRoute,
   AppIncidentsIdRoute: AppIncidentsIdRoute,
   AppIncidentsNewRoute: AppIncidentsNewRoute,
