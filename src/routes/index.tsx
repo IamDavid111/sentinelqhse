@@ -33,12 +33,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence.",
+          "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence..",
       },
       { property: "og:title", content: "SentinelQHSE™ — AI-Powered Operational Safety Intelligence" },
       {
         property: "og:description",
-        content: "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence.",
+        content: "SentinelQHSE helps oil and gas operators move from reactive incident management to predictive operational safety intelligence..",
       },
     ],
   }),
