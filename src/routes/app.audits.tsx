@@ -142,7 +142,10 @@ function AuditsPage() {
                     <TableBody>
                       {AUDITS.map((a) => (
                         <TableRow key={a.id}>
-                          <TableCell className="font-medium">{a.title ?? a.id}</TableCell>
+                          <TableCell className="font-medium">
+                            {a.id}
+                            <span className="block text-xs font-normal text-muted-foreground">{a.scope}</span>
+                          </TableCell>
                           <TableCell className="text-xs text-muted-foreground">{a.type}</TableCell>
                           <TableCell className="text-xs text-muted-foreground">{a.site}</TableCell>
                           <TableCell className="text-xs text-muted-foreground">{a.auditor}</TableCell>
@@ -150,7 +153,7 @@ function AuditsPage() {
                           <TableCell>
                             <StatusPill value={a.status} />
                           </TableCell>
-                          <TableCell className="text-right font-semibold">{a.score ? `${a.score}%` : "—"}</TableCell>
+                          <TableCell className="text-right font-semibold">{a.nonConformities}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
