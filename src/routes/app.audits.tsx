@@ -136,7 +136,7 @@ function AuditsPage() {
                         <TableHead>Auditor</TableHead>
                         <TableHead>Date</TableHead>
                         <TableHead>Status</TableHead>
-                        <TableHead className="text-right">Score</TableHead>
+                        <TableHead className="text-right">NCs</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
