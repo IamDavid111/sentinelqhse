@@ -53,7 +53,7 @@ const NAV = [
   { to: "/app/inspections", label: "Safety Inspections", icon: ClipboardCheck },
   { to: "/app/audits", label: "Audit Management", icon: FileBarChart },
   { to: "/app/ai-assistant", label: "AI Safety Assistant", icon: Bot },
-  { to: "/app/ai-intelligence", label: "Risk Intelligence", icon: Sparkles },
+  { to: "/app/ai-intelligence", label: "AI Safety Intelligence", icon: Sparkles },
   { to: "/app/reports", label: "Reports", icon: Gauge },
   { to: "/app/marketplace", label: "HSE Marketplace", icon: Store },
   { to: "/app/notifications", label: "Notifications", icon: Bell },
