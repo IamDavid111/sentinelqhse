@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { Heart, Package, PackageCheck, Scale, Search, ShoppingCart, Star, Store, Truck } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { ORDERS, PRODUCTS, PRODUCT_CATEGORIES, QUOTE_REQUESTS, SUPPLIERS, naira } from "@/lib/marketplace-data";
+import { DELIVERY_LOCATIONS, MOST_REQUESTED, PROCUREMENT_KPIS, PROCUREMENT_REQUESTS } from "@/lib/intelligence-data";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app/marketplace")({
@@ -95,6 +97,7 @@ function MarketplacePage() {
           <TabsTrigger value="compare">Compare ({compare.length})</TabsTrigger>
           <TabsTrigger value="suppliers">Suppliers</TabsTrigger>
           <TabsTrigger value="orders">Orders & history</TabsTrigger>
+          <TabsTrigger value="procurement">Procurement</TabsTrigger>
           <TabsTrigger value="portal">Supplier portal</TabsTrigger>
         </TabsList>
 
@@ -333,6 +336,128 @@ function MarketplacePage() {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+
+        <TabsContent value="procurement" className="mt-4">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+            {PROCUREMENT_KPIS.map((k) => (
+              <Card key={k.label} className="shadow-card">
+                <CardContent className="pt-5">
+                  <p className="text-xs text-muted-foreground">{k.label}</p>
+                  <p className="mt-1.5 text-2xl font-semibold">{k.value}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-4 xl:grid-cols-3">
+            <Card className="shadow-card xl:col-span-2">
+              <CardHeader>
+                <CardTitle className="text-base">Procurement requests</CardTitle>
+                <CardDescription>Requests raised from inspections, audits and incident recommendations.</CardDescription>
+              </CardHeader>
+              <CardContent className="px-0">
+                <div className="overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Request</TableHead>
+                        <TableHead>Product</TableHead>
+                        <TableHead className="text-right">Qty</TableHead>
+                        <TableHead>Delivery location</TableHead>
+                        <TableHead>Required by</TableHead>
+                        <TableHead>Status</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {PROCUREMENT_REQUESTS.map((r) => (
+                        <TableRow key={r.id}>
+                          <TableCell className="font-mono text-xs">
+                            {r.id}
+                            <span className="block font-sans text-xs text-muted-foreground">{r.notes}</span>
+                          </TableCell>
+                          <TableCell className="text-sm">{r.product}</TableCell>
+                          <TableCell className="text-right text-sm">{r.quantity}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground">{r.location}</TableCell>
+                          <TableCell className="text-xs text-muted-foreground">{r.requiredBy}</TableCell>
+                          <TableCell>
+                            <Badge variant={r.status === "Delivered" ? "secondary" : "outline"}>{r.status}</Badge>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="space-y-4">
+              <Card className="shadow-card">
+                <CardHeader>
+                  <CardTitle className="text-base">New procurement request</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="space-y-2">
+                    <Label>Product</Label>
+                    <Select defaultValue={PRODUCTS[0]!.name}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {PRODUCTS.map((p) => (
+                          <SelectItem key={p.id} value={p.name}>{p.name}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                      <Label htmlFor="pr-qty">Quantity</Label>
+                      <Input id="pr-qty" type="number" min={1} defaultValue={10} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="pr-date">Required date</Label>
+                      <Input id="pr-date" type="date" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Delivery location</Label>
+                    <Select defaultValue={DELIVERY_LOCATIONS[0]}>
+                      <SelectTrigger><SelectValue /></SelectTrigger>
+                      <SelectContent>
+                        {DELIVERY_LOCATIONS.map((l) => (
+                          <SelectItem key={l} value={l}>{l}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="pr-notes">Notes</Label>
+                    <Textarea id="pr-notes" rows={3} placeholder="Justification, linked incident or inspection…" />
+                  </div>
+                  <Button className="w-full" onClick={() => toast.success("Procurement request submitted for approval")}>
+                    Submit request
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="shadow-card">
+                <CardHeader>
+                  <CardTitle className="text-base">Most requested equipment</CardTitle>
+                </CardHeader>
+                <CardContent className="h-[220px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={MOST_REQUESTED} layout="vertical" margin={{ left: 24 }}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                      <XAxis type="number" stroke="var(--muted-foreground)" fontSize={11} />
+                      <YAxis dataKey="item" type="category" width={90} stroke="var(--muted-foreground)" fontSize={11} />
+                      <Tooltip contentStyle={{ background: "var(--card)", border: "1px solid var(--border)", borderRadius: 8 }} />
+                      <Bar dataKey="requests" fill="var(--accent)" radius={[0, 4, 4, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </TabsContent>
 
         <TabsContent value="portal" className="mt-4">
