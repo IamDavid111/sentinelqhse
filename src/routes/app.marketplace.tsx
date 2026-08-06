@@ -421,7 +421,7 @@ function MarketplacePage() {
                   </div>
                   <div className="space-y-2">
                     <Label>Delivery location</Label>
-                    <Select defaultValue={DELIVERY_LOCATIONS[0]}>
+                    <Select defaultValue={DELIVERY_LOCATIONS[0]!}>
                       <SelectTrigger><SelectValue /></SelectTrigger>
                       <SelectContent>
                         {DELIVERY_LOCATIONS.map((l) => (
