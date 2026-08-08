@@ -15,6 +15,7 @@ import {
   Search,
   Settings,
   ShieldAlert,
+  ShieldCheck,
   ShoppingBag,
   Sparkles,
   Store,
