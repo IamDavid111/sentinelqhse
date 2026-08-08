@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppActivityRouteImport } from './routes/app.activity'
+import { Route as AppAdminRouteImport } from './routes/app.admin'
 import { Route as AppAiAssistantRouteImport } from './routes/app.ai-assistant'
 import { Route as AppAiIntelligenceRouteImport } from './routes/app.ai-intelligence'
 import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
@@ -54,6 +55,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppActivityRoute = AppActivityRouteImport.update({
   id: '/activity',
   path: '/activity',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminRoute = AppAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
@@ -171,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/activity': typeof AppActivityRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/analytics': typeof AppAnalyticsRoute
@@ -198,6 +205,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/activity': typeof AppActivityRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/analytics': typeof AppAnalyticsRoute
@@ -227,6 +235,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/app/activity': typeof AppActivityRoute
+  '/app/admin': typeof AppAdminRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
   '/app/analytics': typeof AppAnalyticsRoute
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/app/activity'
+    | '/app/admin'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/analytics'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app/activity'
+    | '/app/admin'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/analytics'
@@ -312,6 +323,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/app/activity'
+    | '/app/admin'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
     | '/app/analytics'
@@ -376,6 +388,13 @@ declare module '@tanstack/react-router' {
       path: '/activity'
       fullPath: '/app/activity'
       preLoaderRoute: typeof AppActivityRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin': {
+      id: '/app/admin'
+      path: '/admin'
+      fullPath: '/app/admin'
+      preLoaderRoute: typeof AppAdminRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/ai-assistant': {
@@ -537,6 +556,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppActivityRoute: typeof AppActivityRoute
+  AppAdminRoute: typeof AppAdminRoute
   AppAiAssistantRoute: typeof AppAiAssistantRoute
   AppAiIntelligenceRoute: typeof AppAiIntelligenceRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
@@ -558,6 +578,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppActivityRoute: AppActivityRoute,
+  AppAdminRoute: AppAdminRoute,
   AppAiAssistantRoute: AppAiAssistantRoute,
   AppAiIntelligenceRoute: AppAiIntelligenceRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,

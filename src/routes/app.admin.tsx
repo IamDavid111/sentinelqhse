@@ -323,7 +323,7 @@ function AdminPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="ad-fac">Default facility</Label>
-                <Select defaultValue={SITES[0]}>
+                <Select defaultValue={SITES[0]!}>
                   <SelectTrigger id="ad-fac">
                     <SelectValue />
                   </SelectTrigger>
@@ -454,7 +454,7 @@ function AdminPage() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="f-type">Facility type</Label>
-                <Select defaultValue={FACILITY_TYPES[0]}>
+                <Select defaultValue={FACILITY_TYPES[0]!}>
                   <SelectTrigger id="f-type">
                     <SelectValue />
                   </SelectTrigger>
