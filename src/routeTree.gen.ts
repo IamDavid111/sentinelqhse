@@ -15,6 +15,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppActivityRouteImport } from './routes/app.activity'
 import { Route as AppAiAssistantRouteImport } from './routes/app.ai-assistant'
 import { Route as AppAiIntelligenceRouteImport } from './routes/app.ai-intelligence'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppAuditsRouteImport } from './routes/app.audits'
 import { Route as AppCorrectiveActionsRouteImport } from './routes/app.corrective-actions'
 import { Route as AppInspectionsRouteImport } from './routes/app.inspections'
@@ -63,6 +64,11 @@ const AppAiAssistantRoute = AppAiAssistantRouteImport.update({
 const AppAiIntelligenceRoute = AppAiIntelligenceRouteImport.update({
   id: '/ai-intelligence',
   path: '/ai-intelligence',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAuditsRoute = AppAuditsRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByTo {
   '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
@@ -221,6 +229,7 @@ export interface FileRoutesById {
   '/app/activity': typeof AppActivityRoute
   '/app/ai-assistant': typeof AppAiAssistantRoute
   '/app/ai-intelligence': typeof AppAiIntelligenceRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/audits': typeof AppAuditsRoute
   '/app/corrective-actions': typeof AppCorrectiveActionsRoute
   '/app/inspections': typeof AppInspectionsRoute
@@ -250,6 +259,7 @@ export interface FileRouteTypes {
     | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
+    | '/app/analytics'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
@@ -276,6 +286,7 @@ export interface FileRouteTypes {
     | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
+    | '/app/analytics'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
@@ -303,6 +314,7 @@ export interface FileRouteTypes {
     | '/app/activity'
     | '/app/ai-assistant'
     | '/app/ai-intelligence'
+    | '/app/analytics'
     | '/app/audits'
     | '/app/corrective-actions'
     | '/app/inspections'
@@ -378,6 +390,13 @@ declare module '@tanstack/react-router' {
       path: '/ai-intelligence'
       fullPath: '/app/ai-intelligence'
       preLoaderRoute: typeof AppAiIntelligenceRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/audits': {
@@ -520,6 +539,7 @@ interface AppRouteChildren {
   AppActivityRoute: typeof AppActivityRoute
   AppAiAssistantRoute: typeof AppAiAssistantRoute
   AppAiIntelligenceRoute: typeof AppAiIntelligenceRoute
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppAuditsRoute: typeof AppAuditsRoute
   AppCorrectiveActionsRoute: typeof AppCorrectiveActionsRoute
   AppInspectionsRoute: typeof AppInspectionsRoute
@@ -540,6 +560,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppActivityRoute: AppActivityRoute,
   AppAiAssistantRoute: AppAiAssistantRoute,
   AppAiIntelligenceRoute: AppAiIntelligenceRoute,
+  AppAnalyticsRoute: AppAnalyticsRoute,
   AppAuditsRoute: AppAuditsRoute,
   AppCorrectiveActionsRoute: AppCorrectiveActionsRoute,
   AppInspectionsRoute: AppInspectionsRoute,
@@ -571,13 +592,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
