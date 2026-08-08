@@ -54,11 +54,14 @@ const NAV = [
   { to: "/app/audits", label: "Audit Management", icon: FileBarChart },
   { to: "/app/ai-assistant", label: "AI Safety Assistant", icon: Bot },
   { to: "/app/ai-intelligence", label: "AI Safety Intelligence", icon: Sparkles },
-  { to: "/app/reports", label: "Reports", icon: Gauge },
+  { to: "/app/analytics", label: "Executive Analytics", icon: Gauge },
+  { to: "/app/reports", label: "Reports", icon: FileBarChart },
   { to: "/app/marketplace", label: "HSE Marketplace", icon: Store },
   { to: "/app/notifications", label: "Notifications", icon: Bell },
   { to: "/app/users", label: "Users", icon: Users },
+  { to: "/app/admin", label: "Administration", icon: ShieldCheck },
   { to: "/app/settings", label: "Settings", icon: Settings },
+
 ] as const;
 
 function NavList({ collapsed, onNavigate }: { collapsed: boolean; onNavigate?: (() => void) | undefined }) {
