@@ -1,5 +1,5 @@
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Building2, Loader2, Lock, Mail } from "lucide-react";
+import { Building2, Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -28,6 +28,7 @@ function LoginPage() {
   const [email, setEmail] = useState("adaeze.okonkwo@northgateenergy.com");
   const [password, setPassword] = useState("demo-password");
   const [code, setCode] = useState("NGE-001");
+  const [showPassword, setShowPassword] = useState(false);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -76,13 +77,21 @@ function LoginPage() {
             <Lock className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               id="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-9"
+              className="pl-9 pr-10"
               autoComplete="current-password"
               required
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md p-1.5 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
           </div>
         </div>
 
@@ -97,7 +106,7 @@ function LoginPage() {
 
         <Button type="submit" size="lg" className="w-full" disabled={loading}>
           {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Sign in
+          {loading ? "Signing you in…" : "Sign in"}
         </Button>
 
         <div className="grid gap-2 text-center text-sm text-muted-foreground">
