@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   Sparkles,
   Store,
+  UserCircle,
   Users,
   Wrench,
 } from "lucide-react";
@@ -61,6 +62,7 @@ const NAV = [
   { to: "/app/notifications", label: "Notifications", icon: Bell },
   { to: "/app/users", label: "Users", icon: Users },
   { to: "/app/admin", label: "Administration", icon: ShieldCheck },
+  { to: "/app/profile", label: "Profile", icon: UserCircle },
   { to: "/app/settings", label: "Settings", icon: Settings },
 
 ] as const;

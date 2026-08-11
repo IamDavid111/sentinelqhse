@@ -15,6 +15,7 @@ import {
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
+import { AdminGuard } from "@/components/app/admin-guard";
 import { PageHeader } from "@/components/app/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -56,8 +57,16 @@ export const Route = createFileRoute("/app/admin")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: AdminPage,
+  component: AdminRoute,
 });
+
+function AdminRoute() {
+  return (
+    <AdminGuard>
+      <AdminPage />
+    </AdminGuard>
+  );
+}
 
 const LEVEL: Record<PermissionLevel, string> = {
   full: "bg-primary/14 text-primary ring-1 ring-primary/25",

@@ -15,6 +15,7 @@ import {
   Ship,
   ShieldCheck,
   Siren,
+  Sparkles,
   Waves,
 } from "lucide-react";
 
@@ -109,6 +110,51 @@ const TESTIMONIALS = [
   },
 ];
 
+const AI_CAPABILITIES = [
+  {
+    title: "Predictive risk forecasting",
+    body: "Facility-level risk scores updated daily from incident, inspection, permit and weather signals — with a 7-day outlook.",
+  },
+  {
+    title: "Automated incident narratives",
+    body: "Investigation-ready summaries, contributing factors and severity classification generated from raw field reports.",
+  },
+  {
+    title: "Near-miss pattern detection",
+    body: "Clusters weak signals across sites and shifts to surface the precursors that precede lost-time injuries.",
+  },
+  {
+    title: "Corrective action intelligence",
+    body: "Recommends controls proven effective on similar findings and flags actions likely to slip their due date.",
+  },
+  {
+    title: "Conversational safety copilot",
+    body: "Ask questions in plain language and get grounded answers with links to the underlying records.",
+  },
+  {
+    title: "Regulatory readiness scoring",
+    body: "Continuously scores compliance against ISO 45001, ISO 14001 and national regulator expectations.",
+  },
+];
+
+const ROADMAP = [
+  {
+    phase: "Now — MVP",
+    status: "Shipping",
+    items: ["Incident lifecycle", "Inspections & audits", "Executive analytics", "AI safety copilot"],
+  },
+  {
+    phase: "Next — 2 quarters",
+    status: "In build",
+    items: ["Permit to work", "Contractor competency", "Offline mobile app", "Regulator e-filing"],
+  },
+  {
+    phase: "Later — 12 months",
+    status: "Planned",
+    items: ["IoT gas & wearables ingest", "Computer-vision PPE checks", "Process safety barrier model", "Open API marketplace"],
+  },
+];
+
 function Landing() {
   return (
     <div className="min-h-screen bg-background">
@@ -125,8 +171,14 @@ function Landing() {
             <a href="#benefits" className="hover:text-foreground">
               Outcomes
             </a>
-            <a href="#screens" className="hover:text-foreground">
-              Product
+            <a href="#ai" className="hover:text-foreground">
+              AI
+            </a>
+            <a href="#roadmap" className="hover:text-foreground">
+              Roadmap
+            </a>
+            <a href="#contact" className="hover:text-foreground">
+              Contact
             </a>
           </nav>
           <div className="ml-auto flex items-center gap-2">
@@ -295,6 +347,102 @@ function Landing() {
               className="rounded-xl"
             />
           </div>
+        </div>
+      </section>
+
+      <section id="ai" className="border-t border-border bg-muted/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <Badge variant="secondary" className="mb-4">
+            <Sparkles className="mr-1.5 h-3.5 w-3.5" /> AI capabilities
+          </Badge>
+          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+            Intelligence layered over every safety record
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            Models are trained on your operational history and explained in plain language, so teams can act on a
+            recommendation without needing a data scientist in the room.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {AI_CAPABILITIES.map((c) => (
+              <Card key={c.title} className="h-full shadow-card transition-shadow hover:shadow-elevated">
+                <CardContent className="pt-6">
+                  <h3 className="text-base font-semibold">{c.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">Product roadmap</h2>
+        <p className="mt-3 max-w-2xl text-muted-foreground">
+          A staged path from digital HSE management to a fully connected operational safety system of record.
+        </p>
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {ROADMAP.map((r) => (
+            <Card key={r.phase} className="h-full shadow-card">
+              <CardContent className="pt-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-base font-semibold">{r.phase}</h3>
+                  <Badge variant="secondary">{r.status}</Badge>
+                </div>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {r.items.map((i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      {i}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact" className="border-t border-border bg-muted/40">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Talk to the SentinelQHSE team</h2>
+            <p className="mt-3 text-muted-foreground">
+              Book a guided walkthrough with your own facilities and incident history, or start exploring the platform
+              with the demo organization.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button size="lg" asChild>
+                <Link to="/auth/register">Request a demo</Link>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <a href="mailto:sales@sentinelqhse.com">Email sales</a>
+              </Button>
+            </div>
+          </div>
+          <Card className="shadow-card">
+            <CardContent className="grid gap-4 pt-6 text-sm">
+              <div>
+                <p className="font-medium">Sales</p>
+                <a href="mailto:sales@sentinelqhse.com" className="text-muted-foreground hover:text-foreground">
+                  sales@sentinelqhse.com
+                </a>
+              </div>
+              <div>
+                <p className="font-medium">Support</p>
+                <a href="mailto:support@sentinelqhse.com" className="text-muted-foreground hover:text-foreground">
+                  support@sentinelqhse.com
+                </a>
+              </div>
+              <div>
+                <p className="font-medium">Head office</p>
+                <p className="text-muted-foreground">Victoria Island, Lagos, Nigeria</p>
+              </div>
+              <div>
+                <p className="font-medium">Phone</p>
+                <p className="text-muted-foreground">+234 (0) 1 700 4477</p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
